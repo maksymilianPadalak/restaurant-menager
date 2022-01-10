@@ -12,3 +12,4 @@ node_modules
 .vscode
 config
 .env
+_security

@@ -1,20 +1,27 @@
 {
     "name": "restaurant-menager",
     "packageManager": "yarn@3.1.1",
+    "type": "module",
     "scripts": {
         "dev": "cross-env NODE_ENV=development nodemon src/index.js",
         "test": "cross-env NODE_ENV=test jest --detectOpenHandles --maxWorkers=1 --watch",
-        "prepare": "husky install"
+        "prepare": "husky install",
+        "lint": "eslint src"
     },
     "dependencies": {
         "config": "^3.3.6",
+        "cors": "^2.8.5",
         "cross-env": "^7.0.3",
         "dotenv": "^10.0.0",
+        "express": "^4.17.2",
+        "express-rate-limit": "^6.0.5",
+        "helmet": "^5.0.1",
         "lodash": "^4.17.21",
         "mysql2": "^2.3.3",
         "sequelize": "^6.12.5"
     },
     "devDependencies": {
+        "babel-eslint": "^10.1.0",
         "eslint": "^8.6.0",
         "eslint-config-prettier": "^8.3.0",
         "husky": "^7.0.4",
