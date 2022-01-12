@@ -10,6 +10,8 @@
 #/.pnp.*
 node_modules
 .vscode
-config
 .env
 _security
+config/*
+!config/default.cjs
+!config/utils.cjs
