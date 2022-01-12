@@ -1,7 +1,6 @@
 {
     "name": "restaurant-menager",
     "packageManager": "yarn@3.1.1",
-    "type": "module",
     "scripts": {
         "dev": "cross-env NODE_ENV=development nodemon src/index.js",
         "test-api": "cross-env NODE_ENV=test nodemon src/index.js",
