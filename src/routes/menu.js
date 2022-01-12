@@ -1,51 +1,4 @@
-const dishes = JSON.stringify({
-    menuId: 'asdasd',
-    categories: [
-        {
-            categoryId: 'afafsdfsdf',
-            categoryName: 'seaFood',
-            dishes: [
-                {
-                    dishId: 'asdasdas',
-                    dishName: 'fish',
-                    price: 10,
-                },
-            ],
-        },
-        {
-            categoryId: 'afafsdfsd',
-            categoryName: 'mexican',
-            dishes: [
-                {
-                    dishId: 'asdasda',
-                    dishName: 'fish',
-                    price: 10,
-                },
-            ],
-        },
-        {
-            categoryId: 'afafsdfsdf',
-            categoryName: 'labanese',
-            dishes: [
-                {
-                    dishId: 'asdasdas',
-                    dishName: 'fish',
-                    price: 10,
-                },
-                {
-                    dishId: 'asdasdas',
-                    dishName: 'fish',
-                    price: 10,
-                },
-                {
-                    dishId: 'asdasdas',
-                    dishName: 'fish',
-                    price: 10,
-                },
-            ],
-        },
-    ],
-});
+import { ExampleService } from "../services/menuService.js";
 
 const checkIfNumberOfDishesCorrect = (menu) => {
     let numberOfDishes = 0;
@@ -60,16 +13,16 @@ const checkIfNumberOfDishesCorrect = (menu) => {
     }
 };
 
-export const createMenu = (req, res) => {
-    const { body } = req;
 
-    try {
-        if (checkIfNumberOfDishesCorrect(body)) {
-            return res.send(200);
-        } else {
-            return res.send(400);
-        }
-    } catch (err) {
-        return res.send(500);
-    }
+export const postMenu = async (req, res) => {
+const { body } = req;
+  const { id, name, restaurantName } = body || {};
+  try {
+    await ExampleService.create(id, name, restaurantName);
+    res.status(201);
+  } catch (err) {
+      console.log(err)
+    res.status(500);
+  }
+  return res.send();
 };
