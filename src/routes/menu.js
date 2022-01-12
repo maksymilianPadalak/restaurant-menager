@@ -53,7 +53,7 @@ const checkIfNumberOfDishesCorrect = (menu) => {
         numberOfDishes += category.dishes.length;
     }
     console.log(numberOfDishes);
-    if (numberOfDishes < 4) {
+    if (numberOfDishes < 12) {
         return false;
     } else {
         return true;
@@ -64,10 +64,12 @@ export const createMenu = (req, res) => {
     const { body } = req;
 
     try {
-        console.log(checkIfNumberOfDishesCorrect(body));
-        res.status(201);
+        if (checkIfNumberOfDishesCorrect(body)) {
+            return res.send(200);
+        } else {
+            return res.send(400);
+        }
     } catch (err) {
-        res.status(500);
+        return res.send(500);
     }
-    return res.send(200);
 };
