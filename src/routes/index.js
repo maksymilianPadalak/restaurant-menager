@@ -1,17 +1,18 @@
 import { getStatus } from './status.js';
-import { createMenu } from './menu.js';
-
+import {
+    postMenu,
+  } from "./menu.js";
+  
 export default [
     {
-        method: 'GET',
-        path: '/status',
+        method: "GET",
+        path: "/status",
         isPublic: true,
         cbs: [getStatus],
-    },
-    {
-        method: 'POST',
-        path: '/menu',
-        isPublic: true,
-        cbs: [createMenu],
-    },
+      },
+      {
+        method: "POST",
+        path: "/menu",
+        cbs: [postMenu],
+      }
 ];
