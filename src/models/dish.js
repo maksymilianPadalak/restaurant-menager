@@ -40,3 +40,7 @@ export const createDish = async (options) => {
 export const getDishesByIds = async (dishesIds) => {
   return await databaseProvider.getByIds(MODEL_NAME, dishesIds)
 }
+
+export const getByMenuId = async (menuId) => {
+  return await databaseProvider.getAllWithOptions(MODEL_NAME,{where: {menu_id: menuId}});
+}

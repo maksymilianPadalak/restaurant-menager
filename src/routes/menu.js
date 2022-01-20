@@ -17,8 +17,10 @@ export const postMenu = async (req, res) => {
 };
 
 export const getById = async (req, res) => {
-  const {params} = req;
+const {params} = req;
   const {id} = params || {};
   if (!params?.id) return res.json({data: []});
-  return res.json({menu: await MenuService.getById(id)});
+  let menu = await MenuService.getById(id)
+  let dishes = await DishService.getAllByMenuId(id)
+  return res.json({menu: menu, dishes: dishes});
 };

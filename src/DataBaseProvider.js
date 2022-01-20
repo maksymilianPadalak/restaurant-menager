@@ -51,6 +51,10 @@ class DatabaseProvider {
     return await this.models[modelName].findOne(options);
   };
 
+  getAllWithOptions = async (modelName, options) => {
+    return await this.models[modelName].findAll(options);
+  };
+
   create = async (modelName, options, useTransaction = true) => {
     const action = async () => await this.models[modelName].create(options);
     return useTransaction ? this.transaction(action) : action();
