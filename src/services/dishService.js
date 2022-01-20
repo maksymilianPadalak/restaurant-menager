@@ -1,4 +1,4 @@
-import {createDish} from "../models/dish.js";
+import {createDish, getDishesByIds} from "../models/dish.js";
 
 export const DishService = {
     create: async (dishes) => {
@@ -12,7 +12,10 @@ export const DishService = {
                 menu_id: menuId
             })
         }
-    }
+    },
+    getAllByIds: async (dishesIds) => {
+      return await getDishesByIds(dishesIds) || []
+    },
 
 };
 

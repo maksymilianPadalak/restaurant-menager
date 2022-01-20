@@ -43,6 +43,10 @@ class DatabaseProvider {
     return await this.models[modelName].findAll();
   };
 
+  getByIds = async (modelName, ids) => {
+    return await this.models[modelName].findAll({ where: {id:  ids} });
+  };
+
   getOne = async (modelName, options) => {
     return await this.models[modelName].findOne(options);
   };

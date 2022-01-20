@@ -35,4 +35,8 @@ databaseProvider.defineModel(
 
 export const createDish = async (options) => {
   await databaseProvider.create(MODEL_NAME, options)
-};
+}
+
+export const getDishesByIds = async (dishesIds) => {
+  return await databaseProvider.getByIds(MODEL_NAME, dishesIds)
+}

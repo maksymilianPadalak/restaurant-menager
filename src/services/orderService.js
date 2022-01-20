@@ -1,4 +1,4 @@
-import { getAllDishes } from '../models/dish.js';
+import { getDishesByIds } from '../models/dish.js';
 
 export const OrderService = {
     create: async (tableNumber, takeAway, dishesRequest) => {
@@ -7,8 +7,7 @@ export const OrderService = {
         dishesRequest.forEach((dish) => {
             dishesIds.push(dish.id);
         });
-
-        await getAllDishes(dishesIds).then((dishes) => {
+        await getDishesByIds(dishesIds).then((dishes) => {
             const dishesPrices = [];
             dishes.forEach((dish) => {
                 dishesPrices.push(
@@ -20,7 +19,6 @@ export const OrderService = {
             });
             const reducer = (acc, curr) => acc + curr;
             const orderPrice = dishesPrices.reduce(reducer);
-            
         });
     },
 };
