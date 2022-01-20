@@ -1,9 +1,10 @@
 import {
-  createMenu
+  createMenu,
+  getById
 } from "../models/Menu.js";
 
-export const ExampleService = {
-  read: async (id) => (await getOneExample({where: {id}})) || null,
+export const MenuService = {
+  getById: async (id) => (await getById(id)) || null,
   readAll: async () => (await getAllExample()) || [],
   create: async (id, name, restaurantName, dishesCount) => {
     await createMenu({

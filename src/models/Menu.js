@@ -32,6 +32,12 @@ export const createMenu = async (menuProperties, dishesCount) => {
         throw new Error(`Minimal dish count 12`);
     }
 }
+
+export const getById = async (id) => {
+  return await databaseProvider.getOne(MODEL_NAME,{where: {id}})
+}
+
 const isNumberOfDishesCorrect = (dishes) => {
+  //todo add handling response when dishes count less than 12
   return dishes.length >= 12;
 };
