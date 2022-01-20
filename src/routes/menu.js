@@ -1,27 +1,15 @@
 import { ExampleService } from "../services/menuService.js";
-
-const checkIfNumberOfDishesCorrect = (menu) => {
-    let numberOfDishes = 0;
-    for (const category of menu.categories) {
-        numberOfDishes += category.dishes.length;
-    }
-    console.log(numberOfDishes);
-    if (numberOfDishes < 12) {
-        return false;
-    } else {
-        return true;
-    }
-};
+import {DishService} from "../services/dishService.js";
 
 
 export const postMenu = async (req, res) => {
-const { body } = req;
-  const { id, name, restaurantName } = body || {};
+  const { body } = req;
+  const { id, name, restaurantName, dishes } = body || {};
   try {
-    await ExampleService.create(id, name, restaurantName);
+    await ExampleService.create(id, name, restaurantName, dishes.length);
+    await DishService.create(dishes)
     res.status(201);
   } catch (err) {
-      console.log(err)
     res.status(500);
   }
   return res.send();
