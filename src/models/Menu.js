@@ -33,6 +33,9 @@ export const createMenu = async (menuProperties, dishesCount) => {
     }
 }
 
+export const updateMenu = async (condition, fieldsToUpdate ) => databaseProvider.update(MODEL_NAME, condition, fieldsToUpdate);
+
+
 export const getById = async (id) => {
   return await databaseProvider.getOne(MODEL_NAME,{where: {id}})
 }

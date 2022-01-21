@@ -1,5 +1,5 @@
 import {getStatus} from './status.js';
-import {postMenu, getById} from './menu.js';
+import {postMenu, getById, updateMenu} from './menu.js';
 import {postOrder} from './order.js';
 
 export default [
@@ -13,6 +13,11 @@ export default [
     method: 'POST',
     path: '/menu',
     cbs: [postMenu],
+  },
+  {
+    method: 'PUT',
+    path: '/menu',
+    cbs: [updateMenu],
   },
   {
     method: 'GET',

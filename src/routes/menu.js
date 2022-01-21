@@ -16,6 +16,18 @@ export const postMenu = async (req, res) => {
   return res.send();
 };
 
+export const updateMenu = async (req,res) => {
+  const {body} = req;
+  const {id, name, restaurantName, dishes} = body || {};
+  try {
+    await MenuService.update(id, {name, restaurantName});
+    res.status(201);
+  } catch (err) {
+    res.status(500);
+  }
+  return res.send();
+}
+
 export const getById = async (req, res) => {
 const {params} = req;
   const {id} = params || {};

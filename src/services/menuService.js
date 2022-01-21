@@ -1,6 +1,6 @@
 import {
   createMenu,
-  getById
+  getById, updateMenu
 } from "../models/Menu.js";
 
 export const MenuService = {
@@ -14,6 +14,6 @@ export const MenuService = {
     }, dishesCount)
   },
   update: async (id, fieldsToUpdate) =>
-    await updateExample({where: {id}}, fieldsToUpdate),
+    await updateMenu({where: {id}}, fieldsToUpdate),
   delete: async (id) => await deleteExample({where: {id}}),
 };
