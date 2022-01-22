@@ -1,5 +1,6 @@
 import {MenuService} from "../services/menuService.js";
 import {DishService} from "../services/dishService.js";
+import databaseProvider from "../DataBaseProvider.js";
 
 
 export const postMenu = async (req, res) => {
@@ -7,8 +8,11 @@ export const postMenu = async (req, res) => {
   const {name, restaurantName, dishes} = body || {};
   try {
     //todo add transaction to both operations
-    await MenuService.create(id, name, restaurantName, dishes.length);
-    await DishService.create(dishes)
+    const action = async () => {
+      let menu = await MenuService.create({name,restaurantName}, dishes.length);
+      await DishService.createDishes(dishes, menu.id)
+    }
+    await databaseProvider.transaction(action)
     res.status(201);
   } catch (err) {
     res.status(500);

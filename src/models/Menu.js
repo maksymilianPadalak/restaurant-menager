@@ -29,7 +29,7 @@ databaseProvider.defineModel(
 
 export const createMenu = async (menuProperties, dishesCount) => {
     if(isNumberOfDishesCorrect(dishesCount)) {
-        await databaseProvider.create(MODEL_NAME, menuProperties);
+      return await databaseProvider.create(MODEL_NAME, menuProperties, false);
     } else {
         throw new Error(`Minimal dish count 12`);
     }

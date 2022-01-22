@@ -1,17 +1,11 @@
-import {createDish, getDishesByIds, getByMenuId} from "../models/dish.js";
+import {createDish, getDishesByIds, getByMenuId, updateDishes} from "../models/dish.js";
 
 export const DishService = {
     getAllByMenuId: async (menuId) => (await getByMenuId(menuId)) || null,
-    create: async (dishes) => {
+    createDishes: async (dishes, menuId) => {
         for (const dish of dishes) {
-            let {id, name, price, category, menuId} = dish
-            await createDish({
-                id,
-                name,
-                price,
-                category,
-                menu_id: menuId
-            })
+            dish.menuId = menuId
+            await createDish(dish)
         }
     },
   updateDishes: async (dishes) => await updateDishes(dishes),
