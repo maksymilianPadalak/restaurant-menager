@@ -1,7 +1,7 @@
 // src/DatabaseProvider.js
 
 import config from "config";
-import { Sequelize } from "sequelize";
+import {Sequelize} from "sequelize";
 
 class DatabaseProvider {
   sequelize = null;
@@ -44,7 +44,7 @@ class DatabaseProvider {
   };
 
   getByIds = async (modelName, ids) => {
-    return await this.models[modelName].findAll({ where: {id:  ids} });
+    return await this.models[modelName].findAll({where: {id: ids}});
   };
 
   getOne = async (modelName, options) => {
@@ -59,6 +59,28 @@ class DatabaseProvider {
     const action = async () => await this.models[modelName].create(options);
     return useTransaction ? this.transaction(action) : action();
   };
+
+  updateAll = async (
+    modelName,
+    entities,
+    useTransaction = true
+  ) => {
+    const action = async () => {
+      for (const entity of entities) {
+        const model = await this.getOne(modelName, {where: {id: entity.id}}, false);
+        if(!model) {
+          await this.create(modelName, entity)
+        } else {
+          Object.keys(entity).forEach((key) => {
+            model[key] = entity[key];
+          });
+          await model.save();
+        }
+      }
+    }
+    return useTransaction ? this.transaction(action) : action();
+  };
+
 
   update = async (
     modelName,
