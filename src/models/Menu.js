@@ -16,8 +16,9 @@ databaseProvider.defineModel(
             type: Sequelize.DataTypes.STRING,
             unique: true,
         },
-        restaurant_name: {
+        restaurantName: {
             type: Sequelize.DataTypes.STRING,
+            field: 'restaurant_name'
         },
     },
     {
