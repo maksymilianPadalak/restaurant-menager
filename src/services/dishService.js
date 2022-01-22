@@ -14,6 +14,7 @@ export const DishService = {
             })
         }
     },
+  updateDishes: async (dishes) => await updateDishes(dishes),
     getAllByIds: async (dishesIds) => {
       return await getDishesByIds(dishesIds) || []
     },

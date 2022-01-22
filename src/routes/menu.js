@@ -21,6 +21,7 @@ export const updateMenu = async (req,res) => {
   const {id, name, restaurantName, dishes} = body || {};
   try {
     await MenuService.update(id, {name, restaurantName});
+    await DishService.updateDishes(dishes)
     res.status(201);
   } catch (err) {
     res.status(500);
