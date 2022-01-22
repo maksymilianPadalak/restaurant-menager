@@ -22,10 +22,11 @@ databaseProvider.defineModel(
       type: Sequelize.DataTypes.FLOAT,
       allowNull: false,
     },
-    menu_id: {
+    menuId: {
       type: Sequelize.DataTypes.INTEGER,
       allowNull: false,
       foreignKey: true,
+      field: 'menu_id'
     },
   },
   {
@@ -34,8 +35,16 @@ databaseProvider.defineModel(
   }
 );
 
-export const createDish = async (options) => {
-  await databaseProvider.create(MODEL_NAME, options)
+export const updateDishes = async (dishes) => {
+  await databaseProvider.updateAll(MODEL_NAME, dishes)
+}
+
+export const updateDish = async (dish) => {
+  await databaseProvider.update(MODEL_NAME, dish)
+}
+
+export const createDish = async (dish) => {
+  await databaseProvider.create(MODEL_NAME, dish)
 }
 
 export const getDishesByIds = async (dishesIds) => {
