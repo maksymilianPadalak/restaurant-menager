@@ -4,7 +4,7 @@ import {DishService} from "../services/dishService.js";
 
 export const postMenu = async (req, res) => {
   const {body} = req;
-  const {id, name, restaurantName, dishes} = body || {};
+  const {name, restaurantName, dishes} = body || {};
   try {
     //todo add transaction to both operations
     await MenuService.create(id, name, restaurantName, dishes.length);

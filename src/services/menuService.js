@@ -6,12 +6,8 @@ import {
 export const MenuService = {
   getById: async (id) => (await getById(id)) || null,
   readAll: async () => (await getAllExample()) || [],
-  create: async (id, name, restaurantName, dishesCount) => {
-    await createMenu({
-      id,
-      name,
-      restaurant_name: restaurantName,
-    }, dishesCount)
+  create: async (menu, dishesCount) => {
+    return await createMenu(menu, dishesCount)
   },
   update: async (id, fieldsToUpdate) =>
     await updateMenu({where: {id}}, fieldsToUpdate),
