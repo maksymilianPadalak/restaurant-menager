@@ -3,7 +3,7 @@ import axios from "axios";
 /**
 *  let oneEur = await curr.convert(1, 'EUR', 'PLN')
 * */
-export default class Currency {
+export default class CurrencyService {
 
   convert = async (amount, fromCurrency, toCurrency) => {
     let apiKey = '3649cc3a74efa29e4e89';

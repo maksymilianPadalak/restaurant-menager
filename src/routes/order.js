@@ -20,6 +20,7 @@ export const updateOrder = async (req,res) => {
     const {body} = req;
     const {id, status} = body || {};
     try {
+        console.log(id);
       await OrderService.update(id, status);
       res.status(201);
     } catch (err) {

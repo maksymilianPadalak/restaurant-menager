@@ -27,6 +27,14 @@ const Order = databaseProvider.defineModel(
     status: {
       type: Sequelize.DataTypes.STRING,
       allowNull: false,
+    },
+    placedAt: {
+      type: Sequelize.DataTypes.DATE,
+      field: "placed_at"
+    },
+    completedAt: {
+      type: Sequelize.DataTypes.DATE,
+      field: "completed_at"
     }
   },
   {
@@ -39,7 +47,7 @@ export const updateOrders = async (orders) => {
   await databaseProvider.updateAll(MODEL_NAME, orders)
 }
 
-export const updateOrder = async (condition, status) => databaseProvider.update(MODEL_NAME, condition, {status: status});
+export const updateOrder = async (condition, fieldsToUpdate ) => databaseProvider.update(MODEL_NAME, condition, fieldsToUpdate);
 
 export const createOrder = async (order) => {
   return await databaseProvider.create(MODEL_NAME, order, false);

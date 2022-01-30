@@ -27,7 +27,8 @@ export const OrderService = {
             price: orderPrice, 
             tableNumber: globalTableNumber, 
             takeAway: globalTakeAway,
-            status: "PENDING"};
+            status: "PENDING",
+            placedAt: new Date()};
         let insertedOrder = await createOrder(order);
         dishes.forEach((dish) => {
             let dishOrder = {
@@ -42,6 +43,12 @@ export const OrderService = {
         
         return insertedOrder.id;
     },
-    update: async (id, status) =>
-    await updateOrder({where: {id}}, status)
+    update: async (id, status) => {
+        let order = {status};
+        if (status == "COMPLETED") {
+            order.completedAt = new Date();
+        }
+        await updateOrder({where: {id}}, order);
+    }
+    
 };
