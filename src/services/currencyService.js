@@ -13,12 +13,11 @@ export default class CurrencyService {
     let query = fromCurrency + '_' + toCurrency;
 
     let url = 'https://free.currconv.com/api/v7/convert?q=' + query + '&compact=ultra&apiKey=' + apiKey;
-
     const response = await axios.get(url)
 
     let val = response.data[query];
     let total = val * amount;
-    return Math.round(total * 100) / 100
+    return await Math.round(total * 100) / 100
   }
 }
 

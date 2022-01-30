@@ -20,7 +20,6 @@ export const updateOrder = async (req,res) => {
     const {body} = req;
     const {id, status} = body || {};
     try {
-        console.log(id);
       await OrderService.update(id, status);
       res.status(201);
     } catch (err) {
@@ -28,3 +27,17 @@ export const updateOrder = async (req,res) => {
     }
     return res.send();
   }
+
+export const getOrderById = async (req, res) => {
+    console.log('xD');
+    const {params} = req;
+    const {id} = params || {};
+    if (!params?.id) return res.json({data: []});
+    let order = await OrderService.getById(id)
+    return res.json(order);
+};
+
+export const getOrders = async (req, res) => {
+    let orders = await OrderService.getAll()
+    return res.json(orders);
+    };

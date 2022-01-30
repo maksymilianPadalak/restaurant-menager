@@ -53,6 +53,10 @@ export const createOrder = async (order) => {
   return await databaseProvider.create(MODEL_NAME, order, false);
 }
 
-export const getOrdersByIds = async (ordersIds) => {
-  return await databaseProvider.getByIds(MODEL_NAME, ordersIds)
+export const getById = async (id) => {
+  return await databaseProvider.getOne(MODEL_NAME,{where: {id}})
+}
+
+export const getAll = async (id) => {
+  return await databaseProvider.getAll(MODEL_NAME)
 }

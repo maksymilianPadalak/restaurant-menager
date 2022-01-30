@@ -1,5 +1,5 @@
 import { getDishesByIds } from '../models/dish.js';
-import {createOrder, updateOrder} from "../models/order.js";
+import {createOrder, updateOrder, getById, getAll} from "../models/order.js";
 import {createDishOrder} from "../models/dishOrder.js";
 
 export const OrderService = {
@@ -43,6 +43,8 @@ export const OrderService = {
         
         return insertedOrder.id;
     },
+    getById: async (id) => (await getById(id)) || null,
+    getAll: async () => (await getAll()) || null,
     update: async (id, status) => {
         let order = {status};
         if (status == "COMPLETED") {

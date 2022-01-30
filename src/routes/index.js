@@ -1,6 +1,7 @@
 import {getStatus} from './status.js';
 import {postMenu, getById, updateMenu} from './menu.js';
-import {postOrder, updateOrder} from './order.js';
+import {postOrder, updateOrder, getOrderById, getOrders} from './order.js';
+import {getInvoiceByOrderId} from './invoice.js';
 
 export default [
   {
@@ -33,5 +34,20 @@ export default [
     method: 'PUT',
     path: '/order',
     cbs: [updateOrder],
+  },
+  {
+    method: 'GET',
+    path: '/order/:id',
+    cbs: [getOrderById],
+  },
+  {
+    method: 'GET',
+    path: '/order',
+    cbs: [getOrders],
+  },
+  {
+    method: 'GET',
+    path: '/invoice/:id',
+    cbs: [getInvoiceByOrderId],
   },
 ];
