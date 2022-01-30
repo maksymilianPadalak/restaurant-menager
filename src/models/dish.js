@@ -3,7 +3,7 @@ import databaseProvider from "../DatabaseProvider.js";
 
 const MODEL_NAME = "DISH";
 
-databaseProvider.defineModel(
+const Dish = databaseProvider.defineModel(
   MODEL_NAME,
   {
     id: {

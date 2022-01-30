@@ -44,5 +44,8 @@ Object.keys(db).forEach((modelName) => {
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
+console.log("XXXXX");
+db["DISH"].belongsToMany(db["ORDER"], {through: db["DISH_ORDER"]});
+db["ORDER"].belongsToMany(db["DISH"], {through: db["DISH_ORDER"]});
 
 module.exports = db;
