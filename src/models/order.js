@@ -23,6 +23,10 @@ const Order = databaseProvider.defineModel(
     price: {
       type: Sequelize.DataTypes.FLOAT,
       allowNull: false,
+    },
+    status: {
+      type: Sequelize.DataTypes.STRING,
+      allowNull: false,
     }
   },
   {
@@ -35,9 +39,7 @@ export const updateOrders = async (orders) => {
   await databaseProvider.updateAll(MODEL_NAME, orders)
 }
 
-export const updateOrder = async (order) => {
-  await databaseProvider.update(MODEL_NAME, order)
-}
+export const updateOrder = async (condition, status) => databaseProvider.update(MODEL_NAME, condition, {status: status});
 
 export const createOrder = async (order) => {
   return await databaseProvider.create(MODEL_NAME, order, false);

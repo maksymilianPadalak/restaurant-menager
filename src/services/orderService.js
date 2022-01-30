@@ -1,5 +1,5 @@
 import { getDishesByIds } from '../models/dish.js';
-import {createOrder} from "../models/order.js";
+import {createOrder, updateOrder} from "../models/order.js";
 import {createDishOrder} from "../models/dishOrder.js";
 
 export const OrderService = {
@@ -26,7 +26,8 @@ export const OrderService = {
         const order = {
             price: orderPrice, 
             tableNumber: globalTableNumber, 
-            takeAway: globalTakeAway};
+            takeAway: globalTakeAway,
+            status: "PENDING"};
         let insertedOrder = await createOrder(order);
         dishes.forEach((dish) => {
             let dishOrder = {
@@ -37,6 +38,10 @@ export const OrderService = {
                 ).quantity
             }
             createDishOrder(dishOrder);
-        })
+        });
+        
+        return insertedOrder.id;
     },
+    update: async (id, status) =>
+    await updateOrder({where: {id}}, status)
 };
