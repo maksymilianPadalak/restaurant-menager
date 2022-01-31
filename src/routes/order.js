@@ -29,7 +29,6 @@ export const updateOrder = async (req,res) => {
   }
 
 export const getOrderById = async (req, res) => {
-    console.log('xD');
     const {params} = req;
     const {id} = params || {};
     if (!params?.id) return res.json({data: []});

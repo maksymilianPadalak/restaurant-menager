@@ -17,7 +17,7 @@ export default class CurrencyService {
 
     let val = response.data[query];
     let total = val * amount;
-    return await Math.round(total * 100) / 100
+    return Math.round(total * 100) / 100
   }
 }
 
